@@ -1,1 +1,6 @@
+- name: Nginx Installation
+  hosts: web
+  become: yes
+  roles:
+    - nginx
 
