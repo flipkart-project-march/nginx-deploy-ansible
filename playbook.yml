@@ -29,6 +29,6 @@
         name: mico-container
         image: mico:latest
         ports:
-          - "80:80"
+          - "81:80"
         state: started
         restart_policy: always
