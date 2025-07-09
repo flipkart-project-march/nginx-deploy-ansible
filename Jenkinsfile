@@ -18,7 +18,7 @@ pipeline {
 
     post {
         success {
-            echo "Nginx deployed successfully!"
+            echo "Docker container deployed successfully!"
         }
         failure {
             echo "Deployment failed."
