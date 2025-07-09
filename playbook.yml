@@ -18,10 +18,16 @@
         dest: /root/project/
         recursive: yes
 
+    - name: Copy Dockerfile separately
+      copy:
+        src: ./Dockerfile
+        dest: /root/project/Dockerfile
+
     - name: Build Docker Image
       community.docker.docker_image:
         name: mico
         tag: latest
+        source: build
         build:
           path: /root/project
         state: present
@@ -31,6 +37,6 @@
         name: mico-container
         image: mico:latest
         ports:
-          - "80:80"
+          - "81:80"
         state: started
         restart_policy: always
