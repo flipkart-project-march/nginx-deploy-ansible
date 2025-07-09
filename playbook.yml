@@ -1,15 +1,16 @@
 - name: Build & Deploy Dockerized Static Website
   hosts: web
-  become: yes              # ← this is required for apt and Docker actions
+  become: yes
   gather_facts: false
-  remote_user: root        # or another user with sudo privileges
+  remote_user: root
 
   tasks:
-    - name: Ensure Docker is installed
-      apt:
-        name: docker.io
-        state: present
-        update_cache: yes
+    - name: Install Docker using official script
+      shell: |
+        curl -fsSL https://get.docker.com -o get-docker.sh
+        sh get-docker.sh
+      args:
+        creates: /usr/bin/docker
 
     - name: Copy app files to remote server
       synchronize:
