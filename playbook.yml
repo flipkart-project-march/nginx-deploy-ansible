@@ -1,6 +1,7 @@
-- name: Install and Start Nginx
+- name: Deploy Full Nginx Website
   hosts: web
   become: yes
+
   tasks:
     - name: Install Nginx
       apt:
@@ -8,8 +9,16 @@
         state: present
         update_cache: yes
 
-    - name: Start Nginx
+    - name: Ensure Nginx is running
       service:
         name: nginx
         state: started
         enabled: true
+
+    - name: Copy website files to /var/www/html
+      copy:
+        src: files/
+        dest: /var/www/html/
+        owner: www-data
+        group: www-data
+        mode: '0755'
