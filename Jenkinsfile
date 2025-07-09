@@ -7,12 +7,6 @@ pipeline {
     }
 
     stages {
-        stage('Clone Repository') {
-            steps {
-                git url: 'https://github.com/flipkart-project-march/nginx-deploy-ansible.git'
-            }
-        }
-
         stage('Run Ansible Playbook') {
             steps {
                 sh '''
@@ -31,4 +25,3 @@ pipeline {
         }
     }
 }
-
