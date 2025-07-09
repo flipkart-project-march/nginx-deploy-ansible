@@ -1,7 +1,8 @@
 - name: Build & Deploy Dockerized Static Website
   hosts: web
+  become: yes              # ← this is required for apt and Docker actions
   gather_facts: false
-  remote_user: root
+  remote_user: root        # or another user with sudo privileges
 
   tasks:
     - name: Ensure Docker is installed
@@ -29,6 +30,6 @@
         name: mico-container
         image: mico:latest
         ports:
-          - "81:80"
+          - "80:80"
         state: started
         restart_policy: always
